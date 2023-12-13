@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title>Exeman JS - Événement & DOM</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="assets/logo.svg"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="assets/style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="size1 flex-w flex-c-m p-t-20 p-b-55 p-l-15 p-r-15">
+		<div class="wsize1 bor1 bg1 p-b-45 p-l-15 p-r-15 p-t-20 respon1">
+			<p class="txt-center m1-txt1 p-t-33 p-b-68">
+				Examen JS - Événement & DOM
+			</p>
+            <div class="alert alert-info text-justify">
+                <p>
+                    Le formulaire ci dessous permet de commander un véhicule.
+                    <br>
+                    Lorsque vous cliquez sur le bouton "Valider le bon de commande", deux types de traitements doivent s'effectuer.
+                </p>
+                <p class="p-t-10">
+                    <span class="font-weight-bold">Premièrement</span>, une série de tests doit être effectuée sur les champs suivants :
+                </p>
+                <ul class="p-l-50">
+                    <li>
+                        Vérifier que tous les champs sont renseignés
+                    </li>
+                    <li>
+                        Vérifier la validité de la date saisie selon le format présenté (slash pour séparer les valeurs, deux chiffres pour le jour, deux chiffres pour le mois et quatre chiffres pour l'année)
+                    </li>
+                    <li>
+                        Vérifier la validité du format de la couleur saisie selon le format présenté (premier caractère est un dièse puis six chiffres et/ou lettres)
+                    </li>
+                </ul>
+                <p class="p-t-10">
+                    <span class="font-weight-bold">Dans un second temps</span>, et si les vérifications précédentes sont valides, vous devez récupérer la valeur de chacun des champs renseignés, pour les afficher dans le récapitulatif en bas de page. 
+                </p>
+                <p class="p-t-10 font-weight-bold">
+                    Remarques :
+                </p>
+                <ul class="p-l-50">
+                    <li>
+                        Vous aurez besoin de gérer convenablement un <span class="font-weight-bold">évènement Javascript</span> déclenchant les traitements
+                    </li>
+                    <li>
+                        Vous aurez peut être besoin, pour les vérifications des valeurs et leur affichage, de gérer différents types de sélecteurs Javascript (<code>getElementById</code>, <code>getElementsByTagName</code>, <code>querySelector</code>, etc...)
+                    </li>
+                    <li>
+                        Pour insérer une valeur dans un élement HTML, vous pouvez utiliser la méthode <code>innerHTML</code>
+                    </li>
+                    <li>
+                        Pour vérifier la validité de certains champs, comme la date, vous pouvez utiliser des <code>Regex</code>
+                    </li>
+                    <li>
+                        Votre code Javascript doit être inséré de manière <span class="font-weight-bold">non intrusive</span> (pas de code directement dans les balises HTML)
+                    </li>
+                    <li>
+                        Ne vous fiez pas aux validations effectuées par le navigateur sur les types de champs HTML5. Vous devez coder les validations vous-même, en JavaScript.
+                    </li>
+                    <li>
+                        Vous avez le droit au jQuery si vous le souhaitez.
+                    </li>
+                    <li>
+                        <span class="font-weight-bold">Vous n'avez pas le droit de modifier le code HTML du formulaire</span> (pas d'ajout de class ou d'id sur des élements)    
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="font-weight-bold">Bon de commande de véhicule</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <form id="bon_commande">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <p>
+                                            Date du bon de commande :
+                                            <span class="small">format JJ/MM/AAAA</span>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <input type="text" value="JJ/MM/AAAA" id="date_commande"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            Type de véhicule :
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <span id="type_vehicule">Voiture</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            Marque :
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <select name="marque" class="form-control">
+                                            <option value="Renault">Renault</option>
+                                            <option value="Peugeot">Peugeot</option>
+                                            <option value="Citroen">Citroen</option>
+                                            <option value="Volkswagen">Volkswagen</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            Couleur - Format hexadécimal :
+                                            <span class="small">(ex : #fefefe)</span>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <input type="text" value="" class="couleur" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            Option :
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <input name="option" type="radio" value="Vitres électriques" /> Vitres électriques<br/>
+                                        <input name="option" type="radio" value="GPS" /> GPS<br/>
+                                        <input name="option" type="radio" value="Peinture métallisée" /> Peinture métallisée<br/>
+                                        <input name="option" type="radio" value="Lecteur CD" /> Lecteur CD
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <input type="button" id="envoyer" class="btn btn-primary" value="Valider le bon de commande" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="font-weight-bold">Récapitulatif</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-text" id="recapitulatif">
+                    <p>
+                        Date : <span id="date"></span><br />
+                        Type de véhicule : <span id="type"></span><br />
+                        Marque : <span id="marque"></span><br />
+                        Couleur : <span id="couleur"></span><br />
+                        Option : <span id="options"></span>
+                    </p>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+</body>
+</html>
